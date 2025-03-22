@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -27,19 +29,6 @@
             margin-top: 0.3rem;
             opacity: 0.8;
         }
-<!-- 在导航栏中添加编辑入口 -->
-<nav>
-    <ul>
-        <!-- 原有导航项保持不变 -->
-        <li>
-            <a href="noone.css" class="noone.js" onclick="toggleEditor()">
-                <i class="fas fa-edit nav-icon"></i>
-                <span class="nav-text">编辑文章</span>
-            </a>
-        </li>
-    </ul>
-</nav>
-
 
 
         /* 隐藏原始文字（无障碍优化） */
@@ -100,6 +89,12 @@
                     <i class="fas fa-file-alt nav-icon"></i>
                     <span class="nav-text">娱乐新闻</span>
                     <span class="sr-only">娱乐新闻</span>
+                </a>
+            </li>
+            <li>
+                <a href="#" class="nav-link" onclick="openEditor()">
+                    <i class="fas fa-edit nav-icon"></i>
+                    <span class="nav-text">编辑文章</span>
                 </a>
             </li>
         </ul>
@@ -214,7 +209,7 @@
     <div class="container">
         
 <section class="main-news" onclick="openArticle('article1.html'）" style="cursor: pointer;">
-    <img src="655f3e1b53bcc0f684f4542b36bec48d296086460.jpg@1052w_!web-dynamic.avif" alt="头条新闻图片">
+    <img src="https://picsum.photos/300/200" alt="头条新闻图片">
     <div>
         <h2>今日头条：f1中国站今日迎来冲刺赛与排位赛</h2>
         <p>冲刺赛四大车队分列前四，窝法sf25初步展现竞争力</p>
@@ -222,11 +217,6 @@
         <p style="color: #666; margin-top: 1rem;">2025年3月22日</p>
     </div>
 </section>
-
-
-
-
-
         <section class="news-list">
             <article class="news-card">
                 <img src="https://picsum.photos/300/200" alt="新闻图片">
@@ -291,7 +281,142 @@
     });
 })();
 </script>
+
+
+
+
+<script>
+// 编辑器控制
+let currentEditIndex = null;
+
+function openEditor() {
+    document.getElementById('editor').style.display = 'block';
+}
+
+function closeEditor() {
+    document.getElementById('editor').style.display = 'none';
+    document.getElementById('articleForm').reset();
+    currentEditIndex = null;
+}
+
+// 文章保存
+document.getElementById('articleForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    const article = {
+        title: sanitizeInput(document.getElementById('articleTitle').value),
+        content: sanitizeInput(document.getElementById('articleContent').value),
+        image: document.getElementById('articleImage').value || 'https://picsum.photos/300/200',
+        date: document.getElementById('articleDate').value
+    };
+
+    const articles = JSON.parse(localStorage.getItem('articles')) || [];
+    
+    if(currentEditIndex !== null) {
+        articles[currentEditIndex] = article;
+    } else {
+        articles.push(article);
+    }
+    
+    localStorage.setItem('articles', JSON.stringify(articles));
+    renderArticles();
+    closeEditor();
+});
+
+// 文章显示
+function renderArticles() {
+    const container = document.querySelector('.news-list');
+    const articles = JSON.parse(localStorage.getItem('articles')) || [];
+    
+    container.innerHTML = articles.map((article, index) => `
+        <article class="news-card">
+            <img src="${article.image}" alt="${article.title}">
+            <h3>${article.title}</h3>
+            <p>${article.content}</p>
+            <div style="margin-top:1rem;">
+                <button onclick="editArticle(${index})" style="background:#2196F3;color:white;padding:0.4rem 0.8rem;border:none;border-radius:4px;cursor:pointer;">编辑</button>
+                <button onclick="deleteArticle(${index})" style="background:#f44336;color:white;padding:0.4rem 0.8rem;border:none;border-radius:4px;margin-left:0.5rem;cursor:pointer;">删除</button>
+            </div>
+            <p style="color: #666; margin-top: 0.5rem;">${new Date(article.date).toLocaleDateString()}</p>
+        </article>
+    `).join('');
+}
+
+// 辅助函数
+function sanitizeInput(text) {
+    return text.replace(/</g, '&lt;').replace(/>/g, '&gt;');
+}
+
+function editArticle(index) {
+    const articles = JSON.parse(localStorage.getItem('articles'));
+    const article = articles[index];
+    
+    document.getElementById('articleTitle').value = article.title;
+    document.getElementById('articleContent').value = article.content;
+    document.getElementById('articleImage').value = article.image;
+    document.getElementById('articleDate').value = article.date;
+    
+    currentEditIndex = index;
+    openEditor();
+}
+
+function deleteArticle(index) {
+    if(confirm('确定要删除这篇文章吗？')) {
+        const articles = JSON.parse(localStorage.getItem('articles'));
+        articles.splice(index, 1);
+        localStorage.setItem('articles', JSON.stringify(articles));
+        renderArticles();
+    }
+}
+
+// 初始化
+document.addEventListener('DOMContentLoaded', () => {
+    // 保留原有统计代码
+    (function() { /* 原有统计代码 */ })();
+    
+    // 加载文章
+    renderArticles();
+});
+</script>
+
+
+
+
+
+
         <p>&copy; 2025 八零四班级委员会 版权所有</p>
+<div id="editor" style="display:none;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:#fff;padding:2rem;border-radius:8px;box-shadow:0 0 20px rgba(0,0,0,0.2);z-index:1000;width:90%;max-width:600px;">
+    <h2 style="color:#1a237e;margin-bottom:1.5rem;">文章编辑器</h2>
+    <form id="articleForm">
+        <div style="margin-bottom:1rem;">
+            <label style="display:block;margin-bottom:0.5rem;color:#333;">标题：</label>
+            <input type="text" id="articleTitle" required 
+                   style="width:100%;padding:0.8rem;border:1px solid #ddd;border-radius:4px;">
+        </div>
+        <div style="margin-bottom:1rem;">
+            <label style="display:block;margin-bottom:0.5rem;color:#333;">内容：</label>
+            <textarea id="articleContent" required rows="6"
+                     style="width:100%;padding:0.8rem;border:1px solid #ddd;border-radius:4px;"></textarea>
+        </div>
+        <div style="margin-bottom:1rem;">
+            <label style="display:block;margin-bottom:0.5rem;color:#333;">图片URL：</label>
+            <input type="url" id="articleImage"
+                   style="width:100%;padding:0.8rem;border:1px solid #ddd;border-radius:4px;">
+        </div>
+        <div style="margin-bottom:1.5rem;">
+            <label style="display:block;margin-bottom:0.5rem;color:#333;">日期：</label>
+            <input type="date" id="articleDate" required
+                   style="width:100%;padding:0.8rem;border:1px solid #ddd;border-radius:4px;">
+        </div>
+        <div style="text-align:right;">
+            <button type="button" onclick="closeEditor()" 
+                    style="background:#f44336;color:white;padding:0.6rem 1.2rem;border:none;border-radius:4px;margin-right:1rem;cursor:pointer;">取消</button>
+            <button type="submit" 
+                    style="background:#4CAF50;color:white;padding:0.6rem 1.2rem;border:none;border-radius:4px;cursor:pointer;">保存</button>
+        </div>
+    </form>
+</div>
                       </footer>
+                  
 </body>
-</html>                              请你为我做出修改
+</html>            
