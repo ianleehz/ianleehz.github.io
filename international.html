@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>国际观察 - 八零四班会</title>
+    <style>
+        /* 基础样式沿用 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: '微软雅黑', sans-serif;
+        }
+         header, nav, footer {
+            /* 保持原有配色方案 */
+            background-color: #1a237e; 
+            color: white;
+        }
+
+        /* 新增国际页面特色样式 */
+        .diplomatic-news {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .country-card {
+            border: 2px solid #3f51b5;
+            border-radius: 10px;
+            padding: 1.5rem;
+            background: #f8f9fa;
+        }
+
+        .treaty-timeline {
+            position: relative;
+            margin: 2rem 0;
+            padding-left: 20px;
+            border-left: 3px solid #1a237e;
+        }
+
+        .timeline-item {
+            margin: 2rem 0;
+            padding: 1rem;
+            background: white;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .international-map {
+            width: 100%;
+            height: 400px;
+            background: #e8eaf6;
+            border-radius: 10px;
+            margin: 2rem 0;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <header>
+        <h1>国际政治观察</h1>
+        <p>全球视野 · 深度分析</p>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="index.html" class="nav-link"><i class="fas fa-home"></i><span class="nav-text">首页</span></a></li>
+            <li><a href="department.html" class="nav-link"><i class="fas fa-users"></i><span class="nav-text">会内</span></a></li>
+            <li><a href="https://www.nicedprk.com/" class="nav-link"><i class="fas fa-flag"></i><span class="nav-text">劳动党</span></a></li>
+            <li><a href="#" class="nav-link active"><i class="fas fa-globe-asia"></i><span class="nav-text">国际</span></a></li>
+            <li><a href="entertainment.html" class="nav-link"><i class="fas fa-file-alt"></i><span class="nav-text">娱乐新闻</span></a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <!-- 外交关系地图 -->
+        <div class="international-map">
+            <!-- 可接入实际地图API -->
+            <img src="https://picsum.photos/1200/400?blur" alt="国际关系示意图" 
+                 style="width:100%; height:100%; border-radius:10px; object-fit:cover;">
+        </div>
+
+        <!-- 重点国家观察 -->
+        <section class="diplomatic-news">
+            <article class="country-card">
+                <h3><i class="fas fa-flag-usa"></i> 中美关系</h3>
+                <p>样式测试中</p>
+                <div class="progress-bar" style="margin:1rem 0; height:5px; background:#e0e0e0;">
+                    <div style="width:65%; height:100%; background:#3f51b5;"></div>
+                </div>
+                <small>样式测试中</small>
+            </article>
+
+            <article class="country-card">
+                <h3><i class="fas fa-peace"></i> 半岛局势</h3>
+                <p>样式测试中</p>
+                <div class="progress-bar" style="margin:1rem 0; height:5px; background:#e0e0e0;">
+                    <div style="width:30%; height:100%; background:#4CAF50;"></div>
+                </div>
+                <small>样式测试中</small>
+            </article>
+        </section>
+
+        <!-- 条约时间轴 -->
+        <section class="treaty-timeline">
+            <div class="timeline-item">
+                <h4><i class="fas fa-file-signature"></i> 2025-03-015</h4>
+                <p>样式测试中</p>
+            </div>
+            <div class="timeline-item">
+                <h4><i class="fas fa-handshake"></i> 2025-03-15</h4>
+                <p>样式测试中</p>
+            </div>
+        </section>
+
+        <!-- 国际合作项目 -->
+        <section class="organization-chart">  
+            <div class="department-card">
+                <h3><i class="fas fa-hand-holding-water"></i> 气候行动</h3>
+                <p>样式测试中</p>
+                <p>样式测试中</p>
+            </div>
+            <div class="department-card">
+                <h3><i class="fas fa-satellite"></i> 太空合作</h3>
+                <p>样式测试中</p>
+                <p>样式测试中</p>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 八零四班级委员会 版权所有</p>
+        
+    </footer>
+</body>
+</html>

@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>会内要闻 - 八零四班会公报</title>
+    <!-- 共用样式 -->
+    <style>
+        /* 沿用原有全局样式 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: '微软雅黑', sans-serif;
+        }
+
+        header, nav, footer {
+            /* 保持原有配色方案 */
+            background-color: #1a237e; 
+            color: white;
+        }
+
+        /* 新增会内页面专属样式 */
+        .organization-chart {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .department-card {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .meeting-schedule {
+            margin: 2rem 0;
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+        }
+
+        th, td {
+            padding: 12px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+
+        th {
+            background-color: #3f51b5;
+            color: white;
+        }
+
+        /* 保持原有响应式设计 */
+        @media (max-width: 768px) {
+            .main-news {
+                flex-direction: column;
+            }
+        }
+    </style>
+    <!-- 引入图标库 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <header>
+        <h1>八零四班级委员会内要闻</h1>
+        <p>内部事务公开透明化平台</p>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="index.html" class="nav-link"><i class="fas fa-home"></i><span class="nav-text">首页</span></a></li>
+            <li><a href="#" class="nav-link active"><i class="fas fa-users"></i><span class="nav-text">会内</span></a></li>
+            <li><a href="https://www.nicedprk.com/" class="nav-link"><i class="fas fa-flag"></i><span class="nav-text">劳动党</span></a></li>
+            <li><a href="international.html" class="nav-link"><i class="fas fa-globe-asia"></i><span class="nav-text">国际</span></a></li>
+            <li><a href="entertainment.html" class="nav-link"><i class="fas fa-file-alt"></i><span class="nav-text">娱乐新闻</span></a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <!-- 组织架构 -->
+        <section class="organization-chart">
+            <div class="department-card">
+                <h3><i class="fas fa-balance-scale"></i> 样式测试中</h3>
+                <p>负责人：</p>
+                
+            </div>
+            <div class="department-card">
+                <h3><i class="fas fa-book"></i> 样式测试中</h3>
+                <p>负责人：</p>
+                
+            </div>
+            <div class="department-card">
+                <h3><i class="fas fa-users-cog"></i> 样式测试中</h3>
+                <p>负责人：</p>
+                <p>服务热线：</p>
+            </div>
+        </section>
+<!-- 在组织架构部分后添加 -->
+<section class="document-archive">
+    <h2><i class="fas fa-archive"></i> 文件归档</h2>
+    <div class="document-list">
+        <div class="doc-item">
+            <i class="fas fa-file-pdf"></i>
+            <a href="#">2024年度班级报告.pdf</a>
+        </div>
+        <!-- 更多文件... -->
+    </div>
+</section>
+
+        <!-- 重要公告 -->
+        <section class="main-news">
+            <div class="news-content">
+                <h2>最新会内公告</h2>
+                <div class="announcement">
+                    <h3>关于召开年度班级大会的通知</h3>
+                    <p>会议时间：2025年3月15日 14:00</p>
+                    <p>会议地点：804</p>
+                    <p>注意事项：请准时出席</p>
+                </div>
+            </div>
+            <img src="https://picsum.photos/600/400?grayscale" alt="会议现场">
+        </section>
+
+        <!-- 会议日程表 -->
+        <section class="meeting-schedule">
+            <h2>近期会议安排</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>日期</th>
+                        <th>时间</th>
+                        <th>会议主题</th>
+                        <th>主持人</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>2025-03-05</td>
+                        <td>09:00</td>
+                        <td>样式测试中</td>
+                        <td>样式测试中</td>
+                    </tr>
+                    <tr>
+                        <td>2025-03-12</td>
+                        <td>14:30</td>
+                        <td>样式测试中</td>
+                        <td>样式测试中</td>
+                    </tr>
+                    <tr>
+                        <td>2025-03-15</td>
+                        <td>14:00</td>
+                        <td>样式测试中</td>
+                        <td>样式测试中</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 八零四班级委员会 版权所有</p>
+       
+    </footer>
+</body>
+</html>
